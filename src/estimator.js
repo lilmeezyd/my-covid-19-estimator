@@ -24,8 +24,7 @@ const covid19ImpactEstimator = (data) => {
   const { avgDailyIncomeInUSD } = region;
   const { avgDailyIncomePopulation } = region;
   let hospitalAvailableBeds;
-  let dollarsInFlightPerDay;
-  let totalDailyIncome;
+  let avgDailyIncomeByRequestedTime;
 
   impact.currentlyInfected = data.reportedCases * 10;
   impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** factor;
@@ -34,9 +33,8 @@ const covid19ImpactEstimator = (data) => {
   impact.hospitalBedsByRequestedTime = Math.trunc(hospitalAvailableBeds);
   impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
   impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
-  totalDailyIncome = avgDailyIncomePopulation * avgDailyIncomeInUSD;
-  dollarsInFlightPerDay = Math.trunc(impact.infectionsByRequestedTime * totalDailyIncome);
-  impact.dollarsInFlight = dollarsInFlightPerDay * periodTime;
+  avgDailyIncomeByRequestedTime = impact.infectionsByRequestedTime * avgDailyIncomePopulation;
+  impact.dollarsInFlight = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** factor;
@@ -45,9 +43,8 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.hospitalBedsByRequestedTime = Math.trunc(hospitalAvailableBeds);
   severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
   severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
-  totalDailyIncome = avgDailyIncomePopulation * avgDailyIncomeInUSD;
-  dollarsInFlightPerDay = Math.trunc(severeImpact.infectionsByRequestedTime * totalDailyIncome);
-  severeImpact.dollarsInFlight = dollarsInFlightPerDay * periodTime;
+  avgDailyIncomeByRequestedTime = severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation;
+  severeImpact.dollarsInFlight = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
 
   return { data, impact, severeImpact };
 };
