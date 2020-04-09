@@ -1,5 +1,4 @@
 const covid19ImpactEstimator = (data) => {
-
   const impact = {};
   const severeImpact = {};
   const factor = Math.trunc(data.timeToElapse / 3);
