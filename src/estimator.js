@@ -1,12 +1,18 @@
-const covid19ImpactEstimator = (data) => {
-
-  const timeNormalize = (periodType) => {
-  	let { timeToElapse } = data;
-  	if (periodType === 'days') {
+const covid19ImpactEstimator = (data) => 
+{
+	const { periodType } = data;
+	
+	const timeNormalize = (periodType) => 
+	{
+		let { timeToElapse } = data;
+		if (periodType === 'days') 
+		{
   		timeToElapse = timeToElapse * 1;
-  	} else if (periodType === 'weeks') {
+  	} else if (periodType === 'weeks') 
+  	{
   		timeToElapse = timeToElapse * 7;
-  	} else {
+  	} else 
+  	{
   		timeToElapse = timeToElapse * 30;
   	}
 
@@ -15,7 +21,6 @@ const covid19ImpactEstimator = (data) => {
 
   const impact = {};
   const severeImpact = {};
-  const { periodType } = periodType;
   const periodTime = timeNormalize(periodType);
   const factor = Math.trunc(periodTime / 3);
 
