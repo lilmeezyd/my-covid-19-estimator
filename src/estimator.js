@@ -35,9 +35,8 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
   impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
   avgDailyIncomeByRequestedTime = impact.infectionsByRequestedTime * avgDailyIncomePopulation;
-  avgDailyIncomeByRequestedTime = Math.trunc(avgDailyIncomeByRequestedTime);
-  dollarsInFlight = Math.trunc(avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime);
-  impact.dollarsInFlight = dollarsInFlight;
+  dollarsInFlight = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
+  impact.dollarsInFlight = parseInt(Number(dollarsInFlight).toFixed(0), 10);
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** factor;
@@ -47,9 +46,8 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
   severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
   avgDailyIncomeByRequestedTime = severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation;
-  avgDailyIncomeByRequestedTime = Math.trunc(avgDailyIncomeByRequestedTime);
-  dollarsInFlight = Math.trunc(avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime);
-  severeImpact.dollarsInFlight = dollarsInFlight;
+  dollarsInFlight = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
+  severeImpact.dollarsInFlight = parseInt(Number(dollarsInFlight).toFixed(0), 10);
 
   return { data, impact, severeImpact };
 };
