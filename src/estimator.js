@@ -24,8 +24,22 @@ const covid19ImpactEstimator = (data) => {
   const { avgDailyIncomeInUSD } = region;
   const { avgDailyIncomePopulation } = region;
   let hospitalAvailableBeds;
-  let avgDailyIncomeByRequestedTime;
+  let avgDailyIncomeByTime;
   let dollarsLost;
+
+  const impactOnEconomy = () => {
+    avgDailyIncomeByTime = impact.infectionsByRequestedTime * avgDailyIncomePopulation;
+    dollarsLost = avgDailyIncomeByTime * avgDailyIncomeInUSD * periodTime;
+    impact.dollarsInFlight = Math.floor(dollarsLost);
+    return impact.dollarsInFlight;
+  };
+
+  const severeImpactOnEconomy = () => {
+    avgDailyIncomeByTime = severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation;
+    dollarsLost = avgDailyIncomeByTime * avgDailyIncomeInUSD * periodTime;
+    severeImpact.dollarsInFlight = Math.floor(dollarsLost);
+    return severeImpact.dollarsInFlight;
+  };
 
   impact.currentlyInfected = data.reportedCases * 10;
   impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** factor;
@@ -34,9 +48,7 @@ const covid19ImpactEstimator = (data) => {
   impact.hospitalBedsByRequestedTime = Math.trunc(hospitalAvailableBeds);
   impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
   impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
-  avgDailyIncomeByRequestedTime = impact.infectionsByRequestedTime * avgDailyIncomePopulation;
-  dollarsLost = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
-  impact.dollarsInFlight = Math.floor(dollarsLost);
+  impact.dollarsInFlight = impactOnEconomy();
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** factor;
@@ -45,9 +57,7 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.hospitalBedsByRequestedTime = Math.trunc(hospitalAvailableBeds);
   severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
   severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
-  avgDailyIncomeByRequestedTime = severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation;
-  dollarsLost = avgDailyIncomeByRequestedTime * avgDailyIncomeInUSD * periodTime;
-  severeImpact.dollarsInFlight = Math.floor(dollarsLost);
+  severeImpact.dollarsInFlight = severeImpactOnEconomy();
 
   return { data, impact, severeImpact };
 };
