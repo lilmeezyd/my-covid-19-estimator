@@ -24,19 +24,19 @@ const covid19ImpactEstimator = (data) => {
   const { avgDailyIncomeInUSD } = region;
   const { avgDailyIncomePopulation } = region;
   let hospitalAvailableBeds;
-  let avgDailyIncomeByTime;
+  let avgDailyIncome;
   let dollarsLost;
 
   const impactOnEconomy = () => {
-    avgDailyIncomeByTime = impact.infectionsByRequestedTime * avgDailyIncomePopulation;
-    dollarsLost = Math.trunc(avgDailyIncomeByTime * avgDailyIncomeInUSD * periodTime);
+    avgDailyIncome = Math.trunc(impact.infectionsByRequestedTime * avgDailyIncomePopulation);
+    dollarsLost = Math.trunc(avgDailyIncome * avgDailyIncomeInUSD * periodTime);
     impact.dollarsInFlight = dollarsLost;
     return impact.dollarsInFlight;
   };
 
   const severeImpactOnEconomy = () => {
-    avgDailyIncomeByTime = severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation;
-    dollarsLost = Math.trunc(avgDailyIncomeByTime * avgDailyIncomeInUSD * periodTime);
+    avgDailyIncome = Math.trunc(severeImpact.infectionsByRequestedTime * avgDailyIncomePopulation);
+    dollarsLost = Math.trunc(avgDailyIncome * avgDailyIncomeInUSD * periodTime);
     severeImpact.dollarsInFlight = dollarsLost;
     return severeImpact.dollarsInFlight;
   };
