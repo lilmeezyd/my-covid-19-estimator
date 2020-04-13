@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>COVID-19 ESTIMATOR</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/site.css" type="text/css" />
+
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container">
+  <h1>COVID-19 ESTIMATOR</h1>
+  <hr>
+<div class="body col-md-9">
+	<form autocomplete="off">
+		<div  class="form-group covid">
+			<label for="region">Region</label>
+			<em>Required</em>
+			<select id="region" class="form-control" required>
+				<option value="">Select Region</option>
+				<option value="1">Africa</option>
+				<option value="2">Asia</option>
+				<option value="3">Europe</option>
+				<option value="4">North America</option>
+				<option value="5">South America</option>
+				<option value="6">Oceania</option>
+			</select>
+		</div>
+		<div class="row covid">
+			<div class="col-md-4">
+				<label for="averageAge">Average Age</label>
+				<em>Required</em>
+				<input class="form-control" id="averageAge" type="text" placeholder="Average Age" required>
+			</div>
+			<div class="col-md-4">
+				<label for="averageDailyIncome">Average Daily Income</label>
+				<em>Required</em>
+				<input class="form-control" id="averageDailyIncome" type="text" placeholder="Average Daily Income" required />
+			</div>
+			<div class="col-md-4">
+				<label for="averageDailyIncomePopulation">Average Daily Income Population</label>
+				<em>Required</em>
+				<input class="form-control" id="averageDailyIncomePopulation" type="" placeholder="Average Daily Income Population" required />
+			</div>
+		</div>
+		<div  class="form-group covid">
+			<label data-period-type for="PeriodType">Period Type</label>
+			<em>Required</em>
+			<select class="form-control" id="PeriodType" required>
+				<option value="">Select Period Type</option>
+				<option value="1">Days</option>
+				<option value="2">Weeks</option>
+				<option value="3">Months</option>
+			</select>
+		</div>
+		<div class="form-group covid">
+			<label for="timeToElapse">Time To Elapse</label>
+			<em>Required</em>
+			<input data-time-to-elapse id="timeToElapse" class="form-control" type=""placeholder="Time To Elapse" required>
+		</div>
+		<div class="form-group covid">
+			<label for="reportedCases">Reported Cases</label>
+			<em>Required</em>
+			<input data-reported-cases id="reportedCases" class="form-control" type="" placeholder="Reported Cases" required>
+		</div>
+		<div  class="form-group covid">
+			<label for="population">Population</label>
+			<em>Required</em>
+			<input data-population id="population" class="form-control" type="" placeholder="Population" required>
+		</div>
+        <div  class="form-group covid">
+			<label for="totalHospitalBeds">Total Hospital Beds</label>
+			<em>Required</em>
+			<input data-total-hospital-beds id="totalHospitalBeds" class="form-control" type="" placeholder="Total Hospital Beds" required>
+		</div>
+		<button type="submit" class="btn btn-primary" data-go-estimate>GO ESTIMATE</button>
+		
+	</form>
+</div>
+</div>
+</body>
+</html>

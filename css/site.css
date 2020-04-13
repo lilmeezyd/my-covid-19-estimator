@@ -1,0 +1,21 @@
+em {
+  visibility: hidden;
+}
+
+.covid {
+  margin-top: 10px;
+}
+
+input:required, select:required {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+label {
+  color: black;
+}
+
+button {
+  margin-top: 10px;
+  float: right;
+}
