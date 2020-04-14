@@ -16,7 +16,7 @@ const covid19ImpactEstimator = (data) => {
 
   const impact = {};
   const severeImpact = {};
-  const periodTime = timeNormalize(periodType);
+  const periodTime = timeNormalize(periodType)
   const factor = Math.trunc(periodTime / 3);
   const { totalHospitalBeds } = data;
   const availableBeds = totalHospitalBeds * 0.35;
