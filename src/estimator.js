@@ -11,7 +11,7 @@ const covid19ImpactEstimator = (data) => {
       timeToElapse *= 30;
     }
 
-    return timeToElapse
+    return timeToElapse;
   };
 
   const impact = {};
