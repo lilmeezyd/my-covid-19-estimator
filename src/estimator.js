@@ -19,7 +19,7 @@ const covid19ImpactEstimator = (data) => {
   const periodTime = timeNormalize(periodType);
   const factor = Math.trunc(periodTime / 3);
   const { totalHospitalBeds } = data;
-  const availableBeds = totalHospitalBeds * 0.35
+  const availableBeds = totalHospitalBeds * 0.35;
   const { region } = data;
   const { avgDailyIncomeInUSD } = region;
   const { avgDailyIncomePopulation } = region;
